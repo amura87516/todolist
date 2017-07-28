@@ -1,0 +1,20 @@
+<body>
+<form action="{% url 'todolist:update_submit' %}" method="post">
+{% csrf_token %}
+<p>user:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ tobedone.user }}</p>
+<p>taskname:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='title' value={{tobedone.title}}></p>
+<p>id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ tobedone.id }}</p>
+<p>detail:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='detail' value={{tobedone.detail }}></p>
+<p>deadline:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='date' name='deadline' value={{tobedone.deadline|date:"Y-m-d"}}></p>
+<p>pub_date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ tobedone.pub_date }}
+<p>finish:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ tobedone.finish }}{% if tobedone.finish %}<input type="radio" name="finish" value="1" checked={{tobedone.finish }}>done<input type="radio" name="finish" value="0">not yet</p>{% else %}<input type="radio" name="finish" value="1" >done<input type="radio" name="finish" value="0" checked=True>not yet</p>{% endif %}
+<br></br>
+<input type='hidden' name='id' value={{ tobedone.id }}>	<input type="submit" name="update" value="update" />
+<br></br>
+</form>
+
+<form action="{% url 'todolist:delete_submit' %}" method="post">
+{% csrf_token %}
+<input type='hidden' name='id' value='{{ tobedone.id }}'><input type="submit" name="delete" value="delete" />
+</form>
+</body>

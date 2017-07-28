@@ -1,0 +1,23 @@
+<h1>add events</h1>
+
+<form action="{% url 'todolist:add_submit' %}" method="post">
+{% csrf_token %}
+
+<label for="title">title：</label>
+<input type='text' name="title" value=""><br>
+
+<label for="detail">detail：</label>
+<input type='text' name='detail' value=""><br>
+
+<label for="deadline">deadlene:</label>
+<input type='date' name='deadline' value={{currenttime|date:"Y-m-d"}}><br>
+
+<label for="finish">finished:</label>
+
+<input type="radio" name="finish" value=True>finish
+<input type="radio" name="finish" value=""  checked="true">Not yet
+
+<input type="hidden" name="user" value="{{request.user}}">
+
+<p><input type="submit" value="add event" /></p>
+</form>

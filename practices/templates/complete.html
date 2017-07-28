@@ -1,0 +1,10 @@
+<p>completed task</p>
+{% if completed_task %}
+    <ul>
+    {% for tobedone in completed_task %}
+        <li><a href="{% url 'todolist:detail' tobedone.id %}">{{ tobedone.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No task has been done.</p>
+{% endif %}

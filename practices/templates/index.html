@@ -1,0 +1,32 @@
+<h1>todolist</h1>
+
+<p>user:	<a href="{% url 'todolist:profile'%}">{{request.user}}</a></p>
+
+<p>options</p>
+<ul>
+	<li><a href="{% url 'todolist:add'%}">add events</a></li>
+	<li><a href="{% url 'todolist:profile'%}">profile</a></li>
+	<li><a href="{% url 'todolist:logout' %}">logout</a></li>
+	<li><a href="{% url 'todolist:register'%}">register</a></li>
+</ul>
+
+<p>events</p>
+<ul>
+	<li><a href="{% url 'todolist:tobedoned'%}">tobedone</a></li>
+	<li><a href="{% url 'todolist:complete'%}">completed events</a></li>
+	<li><a href="{% url 'todolist:expired'%}">expired events</a></li>
+</ul>
+
+
+
+<p>all events</p>
+{% if latest_task %}
+    <ul>
+    {% for tobedone in latest_task %}
+			<li><a href="{% url 'todolist:detail' tobedone.id %}">{{ tobedone.title }}</a></li>
+
+    {% endfor %}
+    </ul>
+{% else %}
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No task.
+{% endif %}

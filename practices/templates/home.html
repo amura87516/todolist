@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>todolist</title>
+    </head>
+    <body>
+        <h2>todolist</h2>
+        {% if request.user.is_authenticated %}
+            <p>{{request.user}} 您已經登入囉</p>
+			
+            <a href="{% url 'todolist:index' %}">todolist</a>
+			<br></br>
+			<a href="{% url 'todolist:logout' %}">logout</a>
+			<br></br>
+			<a href="{% url 'todolist:profile' %}">profile</a>
+        {% else %}
+            <p>您尚未登入喔</p>
+			<p><a href="{% url 'todolist:login' %}">login</a></p>
+			<p><a href="{% url 'todolist:register' %}">register</a></p>
+        {% endif %}
+    </body>
+</html>

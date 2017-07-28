@@ -1,0 +1,24 @@
+<h1>profile</h1>
+	<form action="{% url 'todolist:profile_submit' %}" method="post">
+		{% csrf_token %}
+
+		<label for="title">username：</label>
+		<input type='text' name="username" value={{request.user.username}}><br>
+
+		<label for="detail">first name：</label>
+		<input type='text' name='first_name' value={{request.user.first_name}}><br>
+
+		<label for="deadline">last name:</label>
+		<input type='text' name='last_name' value={{request.user.last_name}}><br>
+
+		<label for="deadline">email:</label>
+		<input type='text' name='email' value={{request.user.email}}><br>
+		
+		<label for="deadline">password:</label>
+		<input type='text' name='password' ><br>
+
+		<input type="hidden" name="user" value="{{request.user}}">
+
+		<p><input type="submit" value="update profile" /></p>
+	
+	</form>
