@@ -64,13 +64,13 @@ def complete(request):
 @login_required
 def expired(request):
 	#ex=tobedone.objects.get(tobedone=True)
-	ex=tobedone.objects.filter(deadline__lte=timezone.now())
+	ex=tobedone.objects.filter(deadline__lte=timezone.now()).filter(user=request.user.username)
 	#ex=tobedone.objects.all()
 	return render(request,'expired.html',{'expired_task': ex})
 
 @login_required
 def tobedoned(request):
-	tobedoned_task=tobedone.objects.filter(finish=False)
+	tobedoned_task=tobedone.objects.filter(finish=False).filter(user=request.user.username)
 	return render(request,'tobedone.html',{'tobedoned_task': tobedoned_task})
 
 @login_required	
